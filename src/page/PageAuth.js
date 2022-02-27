@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../style/Auth.css'
 import axios from 'axios';
-import { render } from "@testing-library/react";
+import emailjs from '@emailjs/browser';
+
 
 class Login extends React.Component {
 
@@ -15,6 +16,7 @@ class Login extends React.Component {
             DataisLoaded: false
           };
       };
+
       // ComponentDidMount is used to
       // execute the code 
       componentDidMount() {
@@ -30,33 +32,20 @@ class Login extends React.Component {
 
     
     render () {
+
+
         const Test = () => {
-        const [ username, setUserName ] = useState("");
-        const [ password, setPassword ] = useState("");
-
+            const [ username, setUserName ] = useState("");
+            const [ password, setPassword ] = useState("");        
         
-        
-        const navigate = useNavigate();
-        useEffect(() => {
-            if (localStorage.getItem("user-info")) {
-                navigate("/home");
-            }
-        }, [])
+            const navigate = useNavigate();
+            useEffect(() => {
+                if (localStorage.getItem("user-info")) {
+                    navigate("/home");
+                }
+            }, [])
 
-        /*const [data, setData] = useState({
-            username: "",
-            password:  ""
-        })*/
-
-        /*const handleChange = (e) => {
-            const value = e.target.value;
-            setData({
-                ...data,
-                [e.target.name]: value
-            });
-        }*/
-
-         //creating IP state
+            //creating IP state
             const [ip, setIP] = useState('');
 
             //creating function to load ip address from the API
@@ -72,13 +61,9 @@ class Login extends React.Component {
 
             }, [])
         
-        const { users } = this.state;
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            /*const userData = {
-                username: data.username,
-                password: data.password
-            }*/
+            const { users } = this.state;
+            const handleSubmit = (e) => {
+                e.preventDefault();
 
             users.map((user) => {
                 if(username === user.username) {
@@ -97,8 +82,6 @@ class Login extends React.Component {
                     console.log("Username is not valid")
                 }
             })
-
-
             /*axios
                 .post('http://192.168.1.59:3300/users', userData)
                 .then((response) => {
@@ -153,7 +136,7 @@ class Login extends React.Component {
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
-                </form>
+            </form>
         );
     }
     return <Test/>
@@ -188,3 +171,16 @@ export default Login
             
         }
  */
+
+        /*const [data, setData] = useState({
+            username: "",
+            password:  ""
+        })*/
+
+        /*const handleChange = (e) => {
+            const value = e.target.value;
+            setData({
+                ...data,
+                [e.target.name]: value
+            });
+        }*/

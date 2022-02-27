@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../style/Auth.css'
 
 export const ContactUs = () => {
     
@@ -21,9 +23,9 @@ export const ContactUs = () => {
 
   };*/
    var templateParams = {
-        user_name:'jojo',
+        user_name:'Monsieur',
         user_email: 'marty.bertrand@hotmail.com',
-        message: 'huitr'   
+        message: '4dz6ds'   
     }
   const sendEmail = (e) => {
     e.preventDefault();
@@ -49,11 +51,11 @@ export const ContactUs = () => {
 
   return (
   <>
-    <form /*ref={form}*/ onSubmit={sendEmail}>
+    <form /*ref={form}*/ className="formmm" onSubmit={sendEmail}>
       <label>Appuyer sur evoyer pour recevoir un code d'identification</label>
       <input type="submit" value="Envoyer" />
     </form>
-    <form onSubmit={verifCode}>
+    <form className="formmm" onSubmit={verifCode}>
         <label>Saisir le code reçu par mail :</label>
         <input type="text" name="check" onChange={event => setCode(event.target.value)}/>
         <input type="submit" value="Check" />
