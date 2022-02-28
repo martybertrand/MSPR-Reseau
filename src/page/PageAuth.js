@@ -62,24 +62,40 @@ class Login extends React.Component {
             }, [])
         
             const { users } = this.state;
+             var countLog = 0
+             
             const handleSubmit = (e) => {
                 e.preventDefault();
+           
 
             users.map((user) => {
-                if(username === user.username) {
-                    if(password === user.password){
-                        if (ip === user.IpConnexion){
-                            navigate("/home")
-                            console.log("Connection success")
+                if (countLog < 8) {
+                    if(username === user.username) {
+                        if(password === user.password){
+                            if (ip === user.IpConnexion){
+                                navigate("/home")
+                                console.log("Connection success")
+                                console.log(countLog)
+                                countLog = 0
+                            } else {
+                                navigate("/email")
+                                console.log("Connection inhabituel ! Veuillez vérifier l'authentification par mail.")
+                                
+                                
+                            }
                         } else {
-                            navigate("/email")
-                            console.log("Connection inhabituel ! Veuillez vérifier l'authentification par mail.")
+                            console.log("Password is not valid")
+                            countLog = countLog + 1
+                            console.log(countLog)
                         }
                     } else {
-                        console.log("Password is not valid")
+                        console.log("Username is not valid")
+                        countLog = countLog + 1
+                        console.log(countLog)
                     }
                 } else {
-                    console.log("Username is not valid")
+                    navigate("/email")
+                    countLog = 0
                 }
             })
             /*axios
